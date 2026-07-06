@@ -85,8 +85,6 @@ let nairaFundsBalance = document.getElementById("nairaFundsBalance");
 
 onAuthStateChanged(auth, async (user) => {
 
-    console.log("Auth User:", user);
-
     if (!user) {
 
         window.location.href = "login.html";
@@ -98,26 +96,38 @@ onAuthStateChanged(auth, async (user) => {
 
     const snapshot = await get(ref(database, "users/" + user.uid));
 
-    console.log("Snapshot Exists:", snapshot.exists());
+    if (!snapshot.exists()) {
 
-    console.log("Snapshot Data:", snapshot.val());
+        window.location.href = "signup.html";
+        return;
 
-    if (snapshot.exists()) {
+    }
 
-        currentUser = snapshot.val();
+    currentUser = snapshot.val();
 
-        console.log("Current User:", currentUser);
+    if (!currentUser.pin) {
+        window.location.href = "create-pin.html";
+        return;
+    }
 
-        dashboardUser.innerHTML = currentUser.firstName;
-        console.log("Displayed Name:", dashboardUser.innerHTML);
+    if (!currentUser.bvn) {
+        window.location.href = "bvn.html";
+        return;
+    }
 
-        balanceValue.textContent = currentUser.balance;
-        console.log("Displayed Balance:", balanceValue.textContent);
+    if (!currentUser.accountType) {
+        window.location.href = "welcome.html";
+        return;
 
-        if (nairaFundsBalance) {
-            nairaFundsBalance.textContent = currentUser.balance;
-        }
+    }
 
+    // DISPLAY USER DETAILS
+
+    dashboardUser.innerHTML = currentUser.firstName;
+    balanceValue.textContent = currentUser.balance;
+
+    if (nairaFundsBalance) {
+        nairaFundsBalance.textContent = currentUser.balance;
     }
 
 });

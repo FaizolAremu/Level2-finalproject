@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Cowrywise</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body class="bg-light">
+
+<div class="d-flex">
+    
+    <!-- Sidebar -->
+    <aside class="sidebar bg-white border-end d-flex flex-column flex-shrink-0 offcanvas-lg offcanvas-start" tabindex="-1" id="sidebarMenu" style="width: 250px;">
+        <div class="offcanvas-header d-lg-none border-bottom">
+            <img src="./Media/logo0.svg" alt="Cowrywise" height="30">
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column p-3 flex-grow-1">
+            <!-- Logo (Desktop only) -->
+            <a href="/" class="d-none d-lg-flex align-items-center mb-4 text-decoration-none px-3 pt-2">
+                <img src="./Media/logo0.svg" alt="Cowrywise" height="30">
+            </a>
+            
+            <!-- Greeting -->
+            <div class="px-3 mb-4 text-secondary fs-5">
+                Howdy <span class="fw-bold text-dark">Ryan</span>
+            </div>
+            
+            <!-- Navigation -->
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item">
+                    <a href="dashboard.html" class="nav-link d-flex align-items-center gap-3">
+                        <i class="fa-solid fa-house"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="save.html" class="nav-link d-flex align-items-center gap-3 text-secondary">
+                        <i class="fa-solid fa-piggy-bank"></i> Save
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="invest.html" class="nav-link d-flex align-items-center gap-3">
+                        <i class="fa-solid fa-chart-line"></i> Invest
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link d-flex align-items-center gap-3">
+                        <i class="fa-solid fa-egg"></i> Nest
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link d-flex align-items-center gap-3">
+                        <i class="fa-regular fa-credit-card"></i> Payment
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link d-flex align-items-center gap-3">
+                        <i class="fa-solid fa-wallet"></i> Stash
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link d-flex align-items-center gap-3">
+                        <i class="fa-solid fa-graduation-cap"></i> Learn
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link d-flex align-items-center gap-3">
+                        <i class="fa-solid fa-bullhorn"></i> Referral
+                    </a>
+                </li>
+            </ul>
+            
+            <!-- Bottom Section -->
+            <hr>
+            <div class="px-3 pb-3">
+                <small class="text-muted fw-bold d-block mb-3" style="font-size: 10px; letter-spacing: 1px;">ALSO FROM COWRYWISE</small>
+                <a href="#" class="text-decoration-none text-dark d-flex align-items-center gap-2 rounded p-2 hover-bg-light">
+                    <div class="bg-success bg-opacity-10 text-success rounded p-2">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
+                    <div class="lh-sm" style="font-size: 14px;">
+                        <span class="d-block fw-semibold">Sprout for</span>
+                        <span class="d-block fw-semibold">Business</span>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square ms-auto text-muted small"></i>
+                </a>
+            </div>
+        </div>
+    </aside>
+    
+    <!-- Main Content -->
+    <main class="flex-grow-1 d-flex flex-column" style="min-width: 0;">
+        
+        <!-- Top Navbar -->
+        <header class="bg-white border-bottom py-3 px-3 px-md-4 d-flex justify-content-between align-items-center sticky-top">
+            <div class="d-flex align-items-center gap-3">
+                <!-- Hamburger Menu for Mobile -->
+                <button class="btn btn-light d-lg-none border-0 px-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu">
+                    <i class="fa-solid fa-bars fs-5"></i>
+                </button>
+                <div class="d-none d-sm-block fw-bold text-secondary text-truncate" style="letter-spacing: 1px; font-size: 13px;">
+                    ACCOUNT OVERVIEW
+                </div>
+            </div>
+            
+            <div class="d-flex align-items-center gap-3 gap-md-4 justify-content-end">
+                <div class="badge rounded-pill bg-light text-dark border d-flex align-items-center gap-2 px-2 px-md-3 py-1 py-md-2">
+                    <img src="./Media/s-coin-2.webp" alt="Seed" width="16" height="16">
+                    <span class="fw-semibold d-none d-sm-inline">Seed</span>
+                </div>
+                <a href="#" class="text-secondary"><i class="fa-regular fa-bell fs-5"></i></a>
+                <div class="dropdown">
+                    <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="./Media/girl-img.jpg" alt="mdo" width="32" height="32" class="rounded-circle border border-2 border-primary">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end text-small shadow" aria-labelledby="dropdownUser1">
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item text-danger" href="#">Sign out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Content Area -->
+        <div class="p-3 p-md-4 p-xl-5">
+            
+            <!-- Tabs & Action -->
+            <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-3 mb-4">
+                <ul class="nav nav-pills bg-white rounded-pill d-inline-flex p-1 shadow-sm align-self-start">
+                    <li class="nav-item">
+                        <a class="nav-link rounded-pill px-4 text-secondary fw-semibold" href="dashboard.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active rounded-pill px-4 fw-semibold" href="portfolio.html">Portfolio</a>
+                    </li>
+                </ul>
+                
+                <a href="#" class="text-decoration-none text-primary fw-medium" style="font-size: 14px;">
+                    <i class="fa-regular fa-envelope me-1"></i> Request investment letter
+                </a>
+            </div>
+            
+            <!-- Grid Layout -->
+            <div class="row g-3 g-md-4">
+                
+                <!-- Left Column -->
+                <div class="col-12 col-lg-6 d-flex flex-column gap-3 gap-md-4">
+                    
+                    <!-- Growth Card -->
+                    <div class="card border-0 shadow-sm rounded-4 h-100">
+                        <div class="card-body p-4 p-md-5 d-flex flex-column">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <div class="d-flex align-items-center gap-2 text-primary fw-bold fs-5">
+                                    <div class="d-flex align-items-end" style="height: 20px;">
+                                        <div class="bg-success opacity-50 me-1" style="width: 6px; height: 12px;"></div>
+                                        <div class="bg-success me-2" style="width: 8px; height: 18px;"></div>
+                                    </div>
+                                    Growth
+                                </div>
+                                <i class="fa-solid fa-chevron-right text-muted small"></i>
+                            </div>
+                            
+                            <h5 class="text-primary fw-medium lh-base mb-4" style="color: #0b2f6a !important; font-size: 1.15rem;">
+                                Your portfolio balance has remained the same year to date.
+                            </h5>
+                            
+                            <div class="mb-4">
+                                <p class="text-muted small mb-1">Today</p>
+                                <h2 class="fw-bold m-0" style="color: #0b2f6a;">₦ 0K</h2>
+                            </div>
+                            
+                            <!-- Fake Chart -->
+                            <div class="mt-auto position-relative" style="height: 100px;">
+                                <div style="position: absolute; bottom: 20px; left: 0; right: 0; border-bottom: 1px solid #e2e8f0;"></div>
+                                <!-- Chart Line -->
+                                <svg width="100%" height="80" viewBox="0 0 500 80" preserveAspectRatio="none" style="position: absolute; bottom: 20px; left: 0;">
+                                    <path d="M0 70 L350 70 L490 10 L500 0 L500 80 L0 80 Z" fill="#e0f2fe" opacity="0.6"></path>
+                                    <path d="M0 70 L350 70 L490 10 L500 0" fill="none" stroke="#3b82f6" stroke-width="2"></path>
+                                    <circle cx="498" cy="2" r="4" fill="#3b82f6"></circle>
+                                </svg>
+                                <!-- X Axis -->
+                                <div class="d-flex justify-content-between text-muted mt-2" style="position: absolute; bottom: 0; left: 0; right: 0; font-size: 10px; font-weight: 600;">
+                                    <span>JAN</span>
+                                    <span>•</span>
+                                    <span>•</span>
+                                    <span>•</span>
+                                    <span>•</span>
+                                    <span>•</span>
+                                    <span>DEC</span>
+                                </div>
+                            </div>
+                            
+                            <hr class="mt-4 mb-3">
+                            <p class="text-muted fst-italic mb-0" style="font-size: 13px;">
+                                Steady progress. Sometimes holding your ground is growth too.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Breakdown Card -->
+                    <div class="card border-0 shadow-sm rounded-4">
+                        <div class="card-body p-4 p-md-5">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <div class="d-flex align-items-center gap-2 text-primary fw-bold fs-5" style="color: #0b2f6a !important;">
+                                    <i class="fa-solid fa-chart-pie text-success"></i>
+                                    Breakdown
+                                </div>
+                                <i class="fa-solid fa-chevron-right text-muted small"></i>
+                            </div>
+                            
+                            <div class="progress mb-4" style="height: 8px; border-radius: 4px;">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            
+                            <div class="d-flex align-items-center gap-2 mb-5">
+                                <div class="bg-success rounded-sm" style="width: 12px; height: 12px;"></div>
+                                <span class="text-primary fw-medium" style="color: #0b2f6a !important; font-size: 14px;">Investments: 100.00%</span>
+                            </div>
+                            
+                            <hr class="mb-3">
+                            <p class="text-muted fst-italic mb-0" style="font-size: 13px;">
+                                Consider saving regularly to build a strong financial foundation.
+                            </p>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <!-- Right Column -->
+                <div class="col-12 col-lg-6">
+                    
+                    <!-- Earnings Card -->
+                    <div class="card border-0 shadow-sm rounded-4 h-100">
+                        <div class="card-body p-4 p-md-5 d-flex flex-column">
+                            <div class="d-flex justify-content-between align-items-center mb-5">
+                                <div class="d-flex align-items-center gap-2 fw-bold fs-5" style="color: #0b2f6a;">
+                                    <div class="d-flex overflow-hidden rounded-circle" style="width: 16px; height: 16px;">
+                                        <div class="bg-success w-50 h-100 opacity-50"></div>
+                                        <div class="bg-success w-50 h-100"></div>
+                                    </div>
+                                    Earnings
+                                </div>
+                                <i class="fa-solid fa-chevron-right text-muted small"></i>
+                            </div>
+                            
+                            <div class="flex-grow-1 d-flex flex-column justify-content-center align-items-center text-muted" style="min-height: 250px;">
+                                <div class="d-flex align-items-end gap-1 mb-3" style="height: 40px;">
+                                    <div class="bg-secondary bg-opacity-25 rounded-top" style="width: 10px; height: 20px;"></div>
+                                    <div class="bg-secondary bg-opacity-25 rounded-top" style="width: 10px; height: 35px;"></div>
+                                    <div class="bg-secondary bg-opacity-25 rounded-top" style="width: 10px; height: 25px;"></div>
+                                </div>
+                                <p class="mb-0" style="font-size: 14px; font-weight: 500;">No data yet</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+    </main>
+</div>
+
+<!-- Floating Action Button -->
+<button class="fab shadow-lg">
+    <img src="./Media/logo0.svg" alt="logo" style="width: 25px; filter: brightness(0) invert(1);">
+</button>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

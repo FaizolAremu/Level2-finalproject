@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create PIN</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="pin-container">
+
+        <div class="pin-box">
+
+            <div class="lock-icon">🔒</div>
+
+            <h2>Create PIN</h2>
+
+            <p>Your PIN adds an extra layer of security</p>
+
+            <h4>Create your PIN</h4>
+
+            <div class="pin-inputs">
+                <input type="password" maxlength="1">
+                <input type="password" maxlength="1">
+                <input type="password" maxlength="1">
+                <input type="password" maxlength="1">
+            </div>
+
+            <h4>Confirm your PIN</h4>
+
+            <div class="pin-inputs">
+                <input type="password" maxlength="1">
+                <input type="password" maxlength="1">
+                <input type="password" maxlength="1">
+                <input type="password" maxlength="1">
+            </div>
+
+            <p id="pinError"></p>
+
+            <button id="createPinBtn" onclick="createPin()">Create PIN</button>
+
+        </div>
+
+    </div>
+</body>
+<script src="script.js"></script>
+
+</html>

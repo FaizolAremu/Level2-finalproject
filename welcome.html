@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="welcome-container">
+
+        <!-- LEFT -->
+        <div class="welcome-left">
+
+            <p class="welcome-user">
+                Welcome, <span id="userName"></span>
+            </p>
+
+            <h1>
+                What would you <br>
+                like to do?
+            </h1>
+
+        </div>
+
+        <!-- RIGHT -->
+        <div class="welcome-right">
+
+            <div class="welcome-cards">
+
+                <div class="welcome-card savings-card" id="savingsCard"  onclick="selectSavings()">
+
+                    <h3>Savings</h3>
+
+                    <img src="./Media/home-product-stocks.webp" alt="Savings">
+
+                </div>
+
+                <div class="welcome-card investment-card" id="investmentCard" onclick="selectInvestment()">
+
+                    <h3>Investments</h3>
+
+                    <img src="./Media/home-product-mutual-funds.webp" alt="Investement">
+
+                </div>
+
+            </div>
+
+            <button class="continue-btn" onclick="continueBtn()">
+                Continue
+            </button>
+
+            <p class="welcome-note">
+                🛒 Invest in stocks, mutual funds and watch your money grow.
+            </p>
+
+        </div>
+
+    </div>
+
+    <footer>
+
+        LICENSED BY THE SEC
+
+    </footer>
+
+</body>
+
+<script src="script.js"></script>
+
+</html>

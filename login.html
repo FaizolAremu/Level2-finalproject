@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- LEFT SIDE-->
+        <div class="left">
+
+            <!-- LOGO-->
+            <div class="logo">
+                <img src="./Media/logo0.svg" alt="" srcset="">
+            </div>
+
+            <div class="left-content">
+                <h1>Jump right in</h1>
+                <p>Sign in to continue</p>
+                <span class="small">New user? <a href="./signup.html">Create account</a></span>
+
+            </div>
+        </div>
+
+        <!-- RIGHT SIDE (FORM) -->
+        <div class="right">
+            <div class="form-box">
+
+                <div class="social-btn">
+                    <button class="btn google"><img src="./Media/google-img.svg" alt="" srcset="">Sign in with
+                        Google</button>
+                    <button class="btn apple"><img src="./Media/apple-img.svg" alt="" srcset="">Sign in with
+                        Apple</button>
+                </div>
+
+                <div class="divider">
+                    <hr>
+                    <span>or</span>
+                    <hr>
+                </div>
+
+                <form id="loginForm">
+
+                    <input id="loginemail" type="email" placeholder="Email Address">
+
+                    <div class="password-box">
+                        <input id="loginpassword" type="password" placeholder="Password">
+                        <span><img src="./Media/eye-img.svg" alt=""></span>
+                    </div>
+
+                    <p id="loginerror"></p>
+
+                    <button class="submit" type="submit">Sign in</button>
+
+                </form>
+
+            </div>
+
+            <div class="footer">
+                <p>Trouble signing in? <a href="#">Chat with us</a></p>
+                <p class="links">Privacy | Terms</p>
+            </div>
+
+
+
+
+        </div>
+
+    </div>
+
+</body>
+<script type="module" src="script.js"></script>
+</html>

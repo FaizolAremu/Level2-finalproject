@@ -1,0 +1,103 @@
+/* Custom CSS for Dashboard - Only for styles Bootstrap doesn't provide natively */
+
+body {
+    background-color: #f4f7fa;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Sidebar scrollbar & positioning */
+@media (min-width: 992px) {
+    .sidebar {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        overflow-y: auto;
+    }
+}
+
+.sidebar::-webkit-scrollbar {
+    width: 4px;
+}
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: #e2e8f0;
+    border-radius: 4px;
+}
+
+/* Sidebar Nav Links */
+.nav-pills .nav-link {
+    color: #475569;
+    font-weight: 500;
+    border-radius: 8px;
+    padding: 10px 16px;
+    margin-bottom: 4px;
+    transition: all 0.2s ease-in-out;
+}
+.nav-pills .nav-link:hover {
+    background-color: #f1f5f9;
+    color: #0d6efd;
+}
+.nav-pills .nav-link.active {
+    background-color: #eff6ff;
+    color: #0d6efd;
+    font-weight: 600;
+}
+
+/* Balance Card */
+.balance-card {
+    background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+    border-radius: 16px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Add Cash Buttons */
+.cash-btn {
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 14px;
+    border: 1px solid #dee2e6;
+    background-color: white;
+    color: #475569;
+    padding: 6px 16px;
+    transition: all 0.2s;
+}
+.cash-btn:hover {
+    border-color: #0d6efd;
+    color: #0d6efd;
+    background-color: #eff6ff;
+}
+
+/* Promo Card */
+.promo-card {
+    background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+    border-radius: 16px;
+    color: white;
+}
+.promo-btn {
+    background-color: #fef08a;
+    color: #b45309;
+    font-weight: 700;
+    border-radius: 6px;
+    padding: 6px 16px;
+    font-size: 14px;
+    border: none;
+}
+
+/* Floating Action Button */
+.fab {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #0d6efd;
+    color: white;
+    box-shadow: 0 4px 12px rgba(13, 110, 253, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    z-index: 1000;
+}

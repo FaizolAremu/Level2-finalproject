@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="signup-container">
+
+        <!-- LEFT -->
+        <div class="signup-left">
+            <div class="signup-nav">
+                <img src="./Media/logo0.svg" alt="logo">
+            </div>
+
+            <div class="signup-box">
+
+                <h1 class="bvn-title">
+                    Verify your identity
+                    <br>
+                    with your BVN
+                </h1>
+
+                <form>
+
+                    <div class="input-box">
+
+                        <input type="text" id="bvn" placeholder=" ">
+
+                        <label>Bank Verification Number</label>
+
+                        <small id="bvnError" class="input-error"></small>
+
+                    </div>
+
+                    <p class="why-bvn">
+                        ⓘ Why Do We Need Your BVN?
+                    </p>
+
+                    <div class="input-box">
+
+                        <input type="date" id="dob" placeholder=" ">
+
+                        <label>Date of Birth</label>
+
+                        <small id="dobError" class="input-error"></small>
+
+                    </div>
+                    <div class="bvn-bottom">
+
+                        <a href="#">
+                            Got Issues Adding Your BVN?
+                        </a>
+
+                        <button type="button" class="signup-continue" onclick="verifyBVN()">
+                            Continue
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+            <div class="signup-footer">
+                <p><img src="./Media/sec-logo.uViKvy1J.png" alt="">Cowrywise is licensed by the SEC</p>
+                <p class="helps"><a href="#">Need Help?</a></p>
+            </div>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="signup-right">
+
+            <div class="signup-right-box">
+
+                <h2>
+                    Invest with over 1 million
+                    customers like you
+                </h2>
+
+                <p>
+                    Wow, great app. It's the most reliable,
+                    trustworthy, saving and investment platform.
+                </p>
+
+                <h3>Precious Nmessomma</h3>
+
+                <img src="./Media/profile.png" class="profile-pic">
+
+                <img src="./Media/map.svg" class="map-image">
+
+            </div>
+
+        </div>
+
+    </div>
+</body>
+<script src="script.js"></script>
+
+</html>

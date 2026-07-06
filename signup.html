@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="signup-container">
+
+        <!-- LEFT -->
+        <div class="signup-left">
+            <div class="signup-nav">
+                <img src="./Media/logo0.svg" alt="logo">
+            </div>
+
+            <div class="signup-box">
+                <h1>Start your investment journey</h1>
+                <p>Got an account? <a href="./login.html">Sign In</a></p>
+
+                <button class="signup-google-btn">
+                    <img src="./Media/google-img.svg" alt="">
+                    Sign up with Google
+                </button>
+
+                <div class="signup-divider">
+                    <hr><span>or</span>
+                    <hr>
+                </div>
+                <form id="signupform">
+
+                    <div class="input-box">
+                        <input type="email" id="email" placeholder=" ">
+                        <label>Email Address</label>
+                    </div>
+
+                    <div class="input-row">
+                        <div class="input-box">
+                            <input type="text" id="firstname" placeholder=" ">
+                            <label>First Name</label>
+                        </div>
+
+                        <div class="input-box">
+                            <input type="text" id="lastname" placeholder=" ">
+                            <label>Last Name</label>
+                        </div>
+                    </div>
+                    
+
+                    <div class="input-row">
+                        <div class="input-box">
+                            <input type="text" id="username" placeholder=" ">
+                            <label>Username</label>
+                        </div>
+
+                        <div class="input-box">
+                            <input type="tel" id="phone" placeholder=" ">
+                            <label>Phone Number</label>
+                        </div>
+                    </div>
+
+                    <div class="input-row">
+                        <div class="input-box">
+                            <input type="password" id="password" placeholder=" ">
+                            <label>Password</label>
+                        </div>
+
+                        <div class="input-box">
+                            <input type="password" id="confirmPassword" placeholder=" ">
+                            <label>Confirm Password</label>
+                        </div>
+                    </div>
+
+                    <p id="error"></p>
+
+                    <div class="halal-option">
+                        <p>Make my account halal</p>
+
+                        <label class="switch">
+                            <input type="checkbox" id="halalAccount">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <button class="signup-continue">
+                        Create Account
+                    </button>
+
+                </form>
+
+                <div class="halal-modal" id="halalModal">
+
+                    <div class="halal-modal-box">
+
+                        <span class="close-modal" id="closeModal">&times;</span>
+
+                        <h3>حلال</h3>
+
+                        <h1>Halal Account</h1>
+
+                        <p>
+                            Halal accounts are great for Muslims who want only
+                            Shariah-compliant investments and no interest on
+                            their savings.
+                        </p>
+
+                        <button id="gotItBtn">Got It</button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="signup-footer">
+                <p><img src="./Media/sec-logo.uViKvy1J.png" alt="">Cowrywise is licensed by the SEC</p>
+                <p class="helps"><a href="#">Need Help?</a></p>
+            </div>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="signup-right">
+            <div class="signup-right-box">
+                <h2>Don't wait to start</h2>
+                <p>See how much you could have earned in the past few years</p>
+                <a href="#"><img src="./Media/star.svg" alt="" srcset=""> See what you missed <img
+                        src="./Media/angle-right.svg" alt="" srcset=""></a>
+            </div>
+        </div>
+
+    </div>
+</body>
+<script type="module" src="script.js"></script>
+</html>

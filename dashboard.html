@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Overview | Cowrywise</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom CSS (Only for things Bootstrap can't do like specific gradients) -->
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body class="bg-light">
+
+    <div class="d-flex">
+
+        <!-- Sidebar -->
+        <aside class="sidebar bg-white border-end d-flex flex-column flex-shrink-0 offcanvas-lg offcanvas-start"
+            tabindex="-1" id="sidebarMenu" style="width: 250px;">
+            <div class="offcanvas-header d-lg-none border-bottom">
+                <img src="./Media/logo0.svg" alt="Cowrywise" height="30">
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu"
+                    aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body d-flex flex-column p-3 flex-grow-1">
+                <!-- Logo (Desktop only) -->
+                <a href="/" class="d-none d-lg-flex align-items-center mb-4 text-decoration-none px-3 pt-2">
+                    <img src="./Media/logo0.svg" alt="Cowrywise" height="30">
+                </a>
+
+                <!-- Greeting -->
+                <div class="px-3 mb-4 text-secondary fs-5">
+                    Howdy <span class="fw-bold text-dark" id="dashboardName"></span>
+                </div>
+
+                <!-- Navigation -->
+                <ul class="nav nav-pills flex-column mb-auto">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active d-flex align-items-center gap-3">
+                            <i class="fa-solid fa-house"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="save.html" class="nav-link d-flex align-items-center gap-3 text-secondary">
+                            <i class="fa-solid fa-piggy-bank"></i> Save
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="invest.html" class="nav-link d-flex align-items-center gap-3">
+                            <i class="fa-solid fa-chart-line"></i> Invest
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link d-flex align-items-center gap-3">
+                            <i class="fa-solid fa-egg"></i> Nest
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link d-flex align-items-center gap-3">
+                            <i class="fa-regular fa-credit-card"></i> Payment
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link d-flex align-items-center gap-3">
+                            <i class="fa-solid fa-wallet"></i> Stash
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link d-flex align-items-center gap-3">
+                            <i class="fa-solid fa-graduation-cap"></i> Learn
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link d-flex align-items-center gap-3">
+                            <i class="fa-solid fa-bullhorn"></i> Referral
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Bottom Section -->
+                <hr>
+                <div class="px-3 pb-3">
+                    <small class="text-muted fw-bold d-block mb-3" style="font-size: 10px; letter-spacing: 1px;">ALSO
+                        FROM COWRYWISE</small>
+                    <a href="#"
+                        class="text-decoration-none text-dark d-flex align-items-center gap-2 rounded p-2 hover-bg-light">
+                        <div class="bg-success bg-opacity-10 text-success rounded p-2">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                        <div class="lh-sm" style="font-size: 14px;">
+                            <span class="d-block fw-semibold">Sprout for</span>
+                            <span class="d-block fw-semibold">Business</span>
+                        </div>
+                        <i class="fa-solid fa-arrow-up-right-from-square ms-auto text-muted small"></i>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-grow-1 d-flex flex-column" style="min-width: 0;">
+
+            <!-- Top Navbar -->
+            <header
+                class="bg-white border-bottom py-3 px-3 px-md-4 d-flex justify-content-between align-items-center sticky-top">
+
+                <div class="d-flex align-items-center gap-3">
+                    <!-- Hamburger Menu for Mobile -->
+                    <button class="btn btn-light d-lg-none border-0 px-2" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#sidebarMenu" aria-controls="sidebarMenu">
+                        <i class="fa-solid fa-bars fs-5"></i>
+                    </button>
+                    <div class="d-none d-sm-block fw-bold text-secondary text-truncate"
+                        style="letter-spacing: 1px; font-size: 13px;">
+                        ACCOUNT OVERVIEW
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-center gap-3 gap-md-4">
+                    <!-- Seed Badge -->
+                    <div
+                        class="badge rounded-pill bg-light text-dark border d-flex align-items-center gap-2 px-2 px-md-3 py-1 py-md-2">
+                        <img src="./Media/s-coin-2.webp" alt="Seed" width="16" height="16">
+                        <span class="fw-semibold d-none d-sm-inline">Seed</span>
+                    </div>
+                    <!-- Notifications -->
+                    <a href="#" class="text-secondary"><i class="fa-regular fa-bell fs-5"></i></a>
+                    <!-- Profile -->
+                    <div class="dropdown">
+                        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="./Media/girl-img.jpg" alt="mdo" width="32" height="32"
+                                class="rounded-circle border border-2 border-primary">
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end text-small shadow" aria-labelledby="dropdownUser1">
+                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><a class="dropdown-item" href="#">Settings</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item text-danger" href="#" id="logoutBtn">Sign out</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content Area -->
+            <div class="p-3 p-md-4 p-xl-5">
+
+                <!-- Tabs -->
+                <ul class="nav nav-pills mb-4 bg-white rounded-pill d-inline-flex p-1 shadow-sm">
+                    <li class="nav-item">
+                        <a class="nav-link active rounded-pill px-4" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link rounded-pill px-4 text-secondary" href="portfolio.html">Portfolio</a>
+                    </li>
+                </ul>
+
+                <!-- Grid Layout -->
+                <div class="row g-3 g-md-4">
+
+                    <!-- Balance Card (Left) -->
+                    <div class="col-12 col-lg-6">
+                        <div class="balance-card p-4 p-md-5 h-100 d-flex flex-column justify-content-between shadow-sm">
+                            <!-- Top -->
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <div class="d-flex align-items-center gap-2 text-white text-opacity-75"
+                                    style="cursor: pointer;">
+                                    <span class="fw-medium">Naira Balance</span>
+                                    <i class="fa-solid fa-chevron-down fs-6"></i>
+                                    <i class="fa-regular fa-eye ms-2" id="toggleVisibility"></i>
+                                </div>
+                                <div
+                                    class="badge bg-white bg-opacity-25 rounded-pill px-3 py-2 d-flex align-items-center gap-1">
+                                    <i class="fa-solid fa-bolt text-warning"></i> 1
+                                </div>
+                            </div>
+
+                            <!-- Middle -->
+                            <div class="mb-5">
+                                <h1 class="display-5 display-md-4 fw-bold mb-0 text-white text-truncate">
+                                    ₦ <span id="balanceValue">0</span><span class="fs-3 fs-md-2 text-white-50"
+                                        id="balanceCents">.00</span>
+                                </h1>
+                            </div>
+
+                            <!-- Bottom -->
+                            <div>
+                                <button
+                                    class="btn btn-light bg-opacity-10 text-white border-0 rounded-pill px-3 px-md-4 py-2 d-inline-flex align-items-center gap-2"
+                                    style="backdrop-filter: blur(5px);">
+                                    <i class="fa-solid fa-plus fs-6"></i>
+                                    <span class="fw-medium" style="font-size: 14px;">₦ NO return in Jun</span>
+                                    <i class="fa-solid fa-chevron-up ms-1"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Actions & Promo (Right) -->
+                    <div class="col-12 col-lg-6 d-flex flex-column gap-3 gap-md-4">
+
+                        <!-- Add Cash -->
+                        <div class="bg-transparent">
+                            <h6 class="text-secondary mb-3 fw-semibold">Add cash</h6>
+                            <div class="d-flex flex-wrap gap-2">
+                                <button class="btn cash-btn" onclick="selectAmount(20000)">₦ 20K</button>
+                                <button class="btn cash-btn" onclick="selectAmount(50000)">₦ 50K</button>
+                                <button class="btn cash-btn" onclick="selectAmount(100000)">₦ 100K</button>
+                                <button class="btn cash-btn">$ 100</button>
+                                <button class="btn cash-btn">$ 200</button>
+                                <button class="btn cash-btn px-3" data-bs-toggle="modal"
+                                    data-bs-target="#addCashModal"><i class="fa-solid fa-plus"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- Promo Carousel -->
+                        <div id="carouselExampleIndicators" class="carousel slide mt-auto" data-bs-ride="carousel">
+                            <div class="carousel-indicators mb-2">
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                                    class="active" aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                                    aria-label="Slide 2"></button>
+                            </div>
+                            <div class="carousel-inner shadow-sm rounded-4">
+                                <!-- Slide 1 -->
+                                <div class="carousel-item active">
+                                    <div class="promo-card p-4 p-md-5 d-flex align-items-center gap-4">
+                                        <div class="d-none d-sm-flex align-items-center justify-content-center bg-white bg-opacity-25 rounded-3"
+                                            style="width: 80px; height: 80px; flex-shrink: 0;">
+                                            <i class="fa-brands fa-youtube fs-1 text-white"></i>
+                                        </div>
+                                        <div>
+                                            <h3 class="fw-bold mb-2 text-warning">Learn. Save. Invest.</h3>
+                                            <p class="mb-4 text-white text-opacity-75 fw-medium">Discover helpful money
+                                                and fun videos on our YouTube page.</p>
+                                            <button class="promo-btn shadow-sm">GO TO YOUTUBE <i
+                                                    class="fa-solid fa-chevron-right ms-1"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Slide 2 -->
+                                <div class="carousel-item">
+                                    <div class="promo-card p-4 p-md-5 d-flex align-items-center gap-4"
+                                        style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                                        <div class="d-none d-sm-flex align-items-center justify-content-center bg-white bg-opacity-25 rounded-3"
+                                            style="width: 80px; height: 80px; flex-shrink: 0;">
+                                            <i class="fa-solid fa-piggy-bank fs-1 text-white"></i>
+                                        </div>
+                                        <div>
+                                            <h3 class="fw-bold mb-2 text-warning">Automate your savings.</h3>
+                                            <p class="mb-4 text-white text-opacity-75 fw-medium">Set up a plan and save
+                                                regularly without thinking about it.</p>
+                                            <button class="promo-btn shadow-sm text-success">START SAVING <i
+                                                    class="fa-solid fa-chevron-right ms-1"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button"
+                                data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button"
+                                data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Floating Action Button -->
+    <button class="fab shadow-lg">
+        <img src="./Media/dashboard-logo.svg" alt="logo" style="width: 25px; filter: brightness(0) invert(1);">
+    </button>
+
+    <!-- Add Cash Modal -->
+    <div class="modal fade" id="addCashModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Cash</h5>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                    <label class="form-label">
+                        Enter Amount
+                    </label>
+
+                    <input type="number" id="paymentAmount" class="form-control" placeholder="Enter amount">
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button class="btn btn-primary w-100" onclick="payWithPaystack()">
+
+                        Proceed to Pay
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Paystack -->
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+
+    <!-- Custom JS -->
+    <script type="module" src="dashboard.js"></script>
+</body>
+
+</html>

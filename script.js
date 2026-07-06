@@ -234,104 +234,106 @@ if (loginFormLf) {
 
 // Create-pin
 
-const createPin = () => {
-    const pin_Error = document.getElementById("pinError");
-    const pinInputs = document.querySelectorAll(".pin-inputs")[0].querySelectorAll("input");
-    const confirmpinInputs = document.querySelectorAll(".pin-inputs")[1].querySelectorAll("input");
+// const createPin = () => {
+//     const pin_Error = document.getElementById("pinError");
+//     const pinInputs = document.querySelectorAll(".pin-inputs")[0].querySelectorAll("input");
+//     const confirmpinInputs = document.querySelectorAll(".pin-inputs")[1].querySelectorAll("input");
 
-    function getPin(inputs) {
+//     function getPin(inputs) {
 
-        let pin = "";
+//         let pin = "";
 
-        for (let i = 0; i < inputs.length; i++) {
-            pin += inputs[i].value;
-        }
-        return pin;
+//         for (let i = 0; i < inputs.length; i++) {
+//             pin += inputs[i].value;
+//         }
+//         return pin;
 
-    }
+//     }
 
-    let pin = getPin(pinInputs);
-    let confirmPin = getPin(confirmpinInputs);
+//     let pin = getPin(pinInputs);
+//     let confirmPin = getPin(confirmpinInputs);
 
-    if (pin === "" || confirmPin === "") {
-        pinError.innerHTML = "Please fill in your PIN";
-        return;
-    }
+//     if (pin === "" || confirmPin === "") {
+//         pinError.innerHTML = "Please fill in your PIN";
+//         return;
+//     }
 
-    if (isNaN(pin) || isNaN(confirmPin)) {
-        pinError.innerHTML = "PIN must contain only numbers";
-        return;
-    }
+//     if (isNaN(pin) || isNaN(confirmPin)) {
+//         pinError.innerHTML = "PIN must contain only numbers";
+//         return;
+//     }
 
-    if (pin.length !== 4 || confirmPin.length !== 4) {
-        pinError.innerHTML = "PIN must be 4 digits";
-        return;
-    }
+//     if (pin.length !== 4 || confirmPin.length !== 4) {
+//         pinError.innerHTML = "PIN must be 4 digits";
+//         return;
+//     }
 
-    if (pin !== confirmPin) {
-        pinError.innerHTML = "PIN does not match";
-        return;
-    }
+//     if (pin !== confirmPin) {
+//         pinError.innerHTML = "PIN does not match";
+//         return;
+//     }
 
-    let allUsers = JSON.parse(localStorage.getItem("usersDetails")) || [];
+//     let allUsers = JSON.parse(localStorage.getItem("usersDetails")) || [];
 
-    let lastUser = allUsers[allUsers.length - 1];
+//     let lastUser = allUsers[allUsers.length - 1];
 
-    if (lastUser) {
-        lastUser.pin = pin;
+//     if (lastUser) {
+//         lastUser.pin = pin;
 
-        localStorage.setItem(
-            "usersDetails",
-            JSON.stringify(allUsers)
-        );
-    }
+//         localStorage.setItem(
+//             "usersDetails",
+//             JSON.stringify(allUsers)
+//         );
+//     }
 
-    pinError.style.color = "green";
-    pinError.innerHTML = "PIN created successfully!";
+//     pinError.style.color = "green";
+//     pinError.innerHTML = "PIN created successfully!";
 
-    setTimeout(() => {
-        window.location.href = "bvn.html";
-    }, 1000);
+//     setTimeout(() => {
+//         window.location.href = "bvn.html";
+//     }, 1000);
 
-}
+// }
 
-const allPinInputs = document.querySelectorAll(".pin-inputs input");
+// const allPinInputs = document.querySelectorAll(".pin-inputs input");
 
-allPinInputs.forEach((input, index) => {
+// allPinInputs.forEach((input, index) => {
 
-    input.addEventListener("input", () => {
+//     input.addEventListener("input", () => {
 
-        if (input.value.length === 1) {
+//         if (input.value.length === 1) {
 
-            let nextInput = allPinInputs[index + 1];
+//             let nextInput = allPinInputs[index + 1];
 
-            if (nextInput) {
-                nextInput.focus();
-            }
+//             if (nextInput) {
+//                 nextInput.focus();
+//             }
 
-        }
+//         }
 
-    });
+//     });
 
-});
+// });
 
-allPinInputs.forEach((input, index) => {
+// allPinInputs.forEach((input, index) => {
 
-    input.addEventListener("keydown", (e) => {
+//     input.addEventListener("keydown", (e) => {
 
-        if (e.key === "Backspace" && input.value === "") {
+//         if (e.key === "Backspace" && input.value === "") {
 
-            let prevInput = allPinInputs[index - 1];
+//             let prevInput = allPinInputs[index - 1];
 
-            if (prevInput) {
-                prevInput.focus();
-            }
+//             if (prevInput) {
+//                 prevInput.focus();
+//             }
 
-        }
+//         }
 
-    });
+//     });
 
-});
+// });
+
+
 
 // BVN
 const verifyBVN = () => {

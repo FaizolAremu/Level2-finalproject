@@ -51,12 +51,26 @@ cashBtns.forEach(btn => {
     });
 });
 
-let selectedAmount = 0;
+const cash20k = document.getElementById("cash20k");
+const cash50k = document.getElementById("cash50k");
+const cash100k = document.getElementById("cash100k");
 
-function selectAmount(amount) {
-    selectedAmount = amount;
+if (cash20k) {
+    cash20k.addEventListener("click", () => {
+        payWithPaystack(20000);
+    });
+}
 
-    payWithPaystack(amount);
+if (cash50k) {
+    cash50k.addEventListener("click", () => {
+        payWithPaystack(50000);
+    });
+}
+
+if (cash100k) {
+    cash100k.addEventListener("click", () => {
+        payWithPaystack(100000);
+    });
 }
 
 // PROTECT DASHBOARD

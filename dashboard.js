@@ -63,6 +63,7 @@ function selectAmount(amount) {
 
 // DISPLAY USER DETAILS
 let currentUser;
+let authUser;
 
 let dashboardUser = document.getElementById("dashboardName");
 
@@ -78,6 +79,8 @@ onAuthStateChanged(auth, async (user) => {
         return;
 
     }
+
+    authUser = user;
 
     const snapshot = await get(ref(database, "users/" + user.uid));
 
@@ -139,7 +142,7 @@ function payWithPaystack(amountFromButton = null) {
         amount = Number(amountInput.value);
     }
 
-    if (amount <= 0 || amount === "") {
+    if (amount <= 0) {
         alert("Please enter a valid amount");
         return;
     }
@@ -156,28 +159,28 @@ function payWithPaystack(amountFromButton = null) {
 
         callback: function (response) {
 
-            currentUser.balance += amount;
+            (async () => {
 
-            balanceValue.textContent = currentUser.balance;
+                let newBalance = currentUser.balance + amount;
 
-            let nairaFundsBalance = document.getElementById("nairaFundsBalance");
-            if (nairaFundsBalance) {
-                nairaFundsBalance.textContent = currentUser.balance;
-            }
+                const userRef = ref(database, "users/" + authUser.uid);
 
-            // update users list
-            let users = JSON.parse(localStorage.getItem("usersDetails")) || [];
+                await update(userRef, {
+                    balance: newBalance
+                });
 
-            let index = users.findIndex(user => user.email === currentUser.email);
+                currentUser.balance = newBalance;
 
-            if (index !== -1) {
-                users[index] = currentUser;
-                localStorage.setItem("usersDetails", JSON.stringify(users));
-            }
+                balanceValue.textContent = currentUser.balance;
 
-            localStorage.setItem("currentUser", JSON.stringify(currentUser));
+                if (nairaFundsBalance) {
+                    nairaFundsBalance.textContent = currentUser.balance;
+                }
 
-            alert("Payment successful! Ref: " + response.reference);
+                alert("Payment successful! Ref: " + response.reference);
+
+            })();
+
         },
 
         onClose: function () {
@@ -187,4 +190,12 @@ function payWithPaystack(amountFromButton = null) {
     });
 
     handler.openIframe();
+}
+
+const payBtn = document.getElementById("payBtn");
+
+if (payBtn) {
+    payBtn.addEventListener("click", () => {
+        payWithPaystack();
+    });
 }

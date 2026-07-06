@@ -425,38 +425,38 @@ if (loginFormLf) {
 
 // Welcome 
 
-let selectedOption = "";
+// let selectedOption = "";
 
-function selectSavings() {
+// function selectSavings() {
 
-    document.getElementById("savingsCard").classList.add("selected");
-    document.getElementById("investmentCard").classList.remove("selected");
+//     document.getElementById("savingsCard").classList.add("selected");
+//     document.getElementById("investmentCard").classList.remove("selected");
 
-    selectedOption = "Savings";
-}
+//     selectedOption = "Savings";
+// }
 
-function selectInvestment() {
+// function selectInvestment() {
 
-    document.getElementById("investmentCard").classList.add("selected");
-    document.getElementById("savingsCard").classList.remove("selected");
+//     document.getElementById("investmentCard").classList.add("selected");
+//     document.getElementById("savingsCard").classList.remove("selected");
 
-    selectedOption = "Investments";
-}
+//     selectedOption = "Investments";
+// }
 
-function continueBtn() {
+// function continueBtn() {
 
-    if (selectedOption === "") {
-        alert("Please select an option");
-        return;
-    }
+//     if (selectedOption === "") {
+//         alert("Please select an option");
+//         return;
+//     }
 
-    let allUsers = JSON.parse(localStorage.getItem("usersDetails")) || [];
-    let lastUser = allUsers[allUsers.length - 1];
+//     let allUsers = JSON.parse(localStorage.getItem("usersDetails")) || [];
+//     let lastUser = allUsers[allUsers.length - 1];
 
-    if (lastUser) {
-        lastUser.accountType = selectedOption;
-        localStorage.setItem("usersDetails", JSON.stringify(allUsers));
-    }
+//     if (lastUser) {
+//         lastUser.accountType = selectedOption;
+//         localStorage.setItem("usersDetails", JSON.stringify(allUsers));
+//     }
 
-    window.location.href = "dashboard.html";
-}
+//     window.location.href = "dashboard.html";
+// }

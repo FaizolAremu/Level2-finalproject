@@ -120,6 +120,8 @@ if (signupForm) {
                     email: emailValue,
                     phone: phoneValue,
                     halal: halalSwitch.checked,
+                    password: passwordValue,
+                    confirmPassword: confirmPasswordValue,
                     balance: 0
 
                 });

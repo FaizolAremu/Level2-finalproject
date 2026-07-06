@@ -336,90 +336,90 @@ if (loginFormLf) {
 
 
 // BVN
-const verifyBVN = () => {
-    const bvnInput = document.getElementById("bvn");
-    const dobInput = document.getElementById("dob");
-    const bvnError = document.getElementById("bvnError");
-    const dobError = document.getElementById("dobError");
+// const verifyBVN = () => {
+//     const bvnInput = document.getElementById("bvn");
+//     const dobInput = document.getElementById("dob");
+//     const bvnError = document.getElementById("bvnError");
+//     const dobError = document.getElementById("dobError");
 
-    let bvnValue = bvnInput.value.trim();
-    let dobValue = dobInput.value;
+//     let bvnValue = bvnInput.value.trim();
+//     let dobValue = dobInput.value;
 
-    bvnError.innerHTML = "";
-    dobError.innerHTML = "";
-    bvnInput.classList.remove("error-border");
-    dobInput.classList.remove("error-border");
+//     bvnError.innerHTML = "";
+//     dobError.innerHTML = "";
+//     bvnInput.classList.remove("error-border");
+//     dobInput.classList.remove("error-border");
 
-    if (bvnValue === "") {
-        bvnError.innerHTML = "Enter your BVN";
+//     if (bvnValue === "") {
+//         bvnError.innerHTML = "Enter your BVN";
 
-        bvnInput.classList.add("error-border");
-        return;
-    }
+//         bvnInput.classList.add("error-border");
+//         return;
+//     }
 
-    if (dobValue === "") {
-        dobError.innerHTML = "Please select your Date of Birth";
+//     if (dobValue === "") {
+//         dobError.innerHTML = "Please select your Date of Birth";
 
-        dobInput.classList.add("error-border");
-        return;
-    }
+//         dobInput.classList.add("error-border");
+//         return;
+//     }
 
-    if (isNaN(bvnValue)) {
-        bvnError.innerHTML = "BVN must contain only numbers";
+//     if (isNaN(bvnValue)) {
+//         bvnError.innerHTML = "BVN must contain only numbers";
 
-        bvnInput.classList.add("error-border");
-        return;
+//         bvnInput.classList.add("error-border");
+//         return;
 
-    }
+//     }
 
-    if (bvnValue.length !== 11) {
-        bvnError.innerHTML = "BVN must be 11 digits";
+//     if (bvnValue.length !== 11) {
+//         bvnError.innerHTML = "BVN must be 11 digits";
 
-        bvnInput.classList.add("error-border");
-        return;
+//         bvnInput.classList.add("error-border");
+//         return;
 
-    }
+//     }
 
-    let allUsers = JSON.parse(localStorage.getItem("usersDetails")) || [];
+//     let allUsers = JSON.parse(localStorage.getItem("usersDetails")) || [];
 
-    let lastUser = allUsers[allUsers.length - 1];
+//     let lastUser = allUsers[allUsers.length - 1];
 
-    if (lastUser) {
-        lastUser.bvn = bvnValue;
-        lastUser.dateOfBirth = dobValue;
+//     if (lastUser) {
+//         lastUser.bvn = bvnValue;
+//         lastUser.dateOfBirth = dobValue;
 
-        localStorage.setItem(
-            "usersDetails",
-            JSON.stringify(allUsers)
-        );
-    }
+//         localStorage.setItem(
+//             "usersDetails",
+//             JSON.stringify(allUsers)
+//         );
+//     }
 
-    window.location.href = "welcome.html";
-}
+//     window.location.href = "welcome.html";
+// }
 
-const bvnInput = document.getElementById("bvn");
-const bvnError = document.getElementById("bvnError");
+// const bvnInput = document.getElementById("bvn");
+// const bvnError = document.getElementById("bvnError");
 
-const dobInput = document.getElementById("dob");
-const dobError = document.getElementById("dobError");
+// const dobInput = document.getElementById("dob");
+// const dobError = document.getElementById("dobError");
 
-if (bvnInput) {
+// if (bvnInput) {
 
-    bvnInput.addEventListener("input", () => {
-        bvnInput.classList.remove("error-border");
-        bvnError.innerText = "";
-    });
+//     bvnInput.addEventListener("input", () => {
+//         bvnInput.classList.remove("error-border");
+//         bvnError.innerText = "";
+//     });
 
-}
+// }
 
-if (dobInput) {
+// if (dobInput) {
 
-    dobInput.addEventListener("input", () => {
-        dobInput.classList.remove("error-border");
-        dobError.innerText = "";
-    });
+//     dobInput.addEventListener("input", () => {
+//         dobInput.classList.remove("error-border");
+//         dobError.innerText = "";
+//     });
 
-}
+// }
 
 
 

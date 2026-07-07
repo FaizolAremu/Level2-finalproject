@@ -1,18 +1,87 @@
 // Firebase Auth functions
 import {
-    createUserWithEmailAndPassword, signInWithEmailAndPassword
+    createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup
 } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
 
 // Firebase Database functions
 import {
     ref,
-    set
+    set,
+    get,
+    update
 } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-database.js";
 
 // Your firebase connection
 import { auth, database } from "./firebase.js";
 
 
+const googleSignupBtn = document.getElementById("googleSignupbtn");
+
+const provider = new GoogleAuthProvider();
+
+googleSignupBtn.addEventListener("click", async () => {
+
+    try {
+
+        const result = await signInWithPopup(auth, provider);
+
+        const user = result.user;
+        const userRef = ref(database, "users/" + user.uid);
+
+        // Check if user already exists
+
+        const snapshot = await get(userRef);
+
+
+        if (!snapshot.exists()) {
+
+            let names = user.displayName.split(" ");
+
+            let firstName = names[0];
+
+            let lastName = names[1] || "";
+
+
+            await set(userRef, {
+
+                firstName: firstName,
+
+                lastName: lastName,
+
+                username: firstName.toLowerCase(),
+
+                email: user.email,
+
+                phone: "",
+
+                halal: false,
+
+                balance: 0
+
+            });
+            console.log("New Google user created");
+
+        }
+
+        else {
+
+            console.log("Google user already exists");
+
+        }
+        window.location.href = "create-pin.html";
+
+    }
+
+
+    catch (error) {
+
+        console.log(error);
+
+        alert(error.message);
+
+    }
+
+});
 
 
 
@@ -425,7 +494,7 @@ if (loginFormLf) {
 
 
 
-// Welcome 
+// Welcome
 
 // let selectedOption = "";
 

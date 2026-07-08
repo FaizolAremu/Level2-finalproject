@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile | Cowrywise</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="dashboard.css">
+
+    <style>
+        /* ---- Profile-specific styles ---- */
+        body { font-family: 'Inter', sans-serif; }
+
+        /* Tab pills */
+        .profile-tabs .nav-link {
+            color: #718096;
+            font-weight: 500;
+            border-radius: 50px;
+            padding: 8px 22px;
+            font-size: 14px;
+            border: none;
+            background: transparent;
+        }
+        .profile-tabs .nav-link.active {
+            background: #fff;
+            color: #0b2f6a;
+            font-weight: 600;
+            box-shadow: 0 1px 6px rgba(0,0,0,0.10);
+        }
+        .profile-tabs-wrap {
+            background: #f1f5f9;
+            border-radius: 50px;
+            display: inline-flex;
+            padding: 4px;
+        }
+
+        /* Avatar */
+        .avatar-wrap { position: relative; display: inline-block; }
+        .avatar-wrap img { width: 72px; height: 72px; object-fit: cover; border-radius: 50%; }
+        .avatar-edit-btn {
+            position: absolute;
+            bottom: 2px; right: 2px;
+            background: #0b2f6a;
+            border: 2px solid #fff;
+            border-radius: 50%;
+            width: 24px; height: 24px;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+        }
+        .avatar-edit-btn i { color: #fff; font-size: 10px; }
+
+        /* Progress card */
+        .progress-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 18px 22px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            cursor: pointer;
+            transition: box-shadow .2s;
+        }
+        .progress-card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+        .progress-bar-track {
+            height: 4px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .progress-bar-fill {
+            height: 4px;
+            background: #2563eb;
+            border-radius: 4px;
+            width: 50%;
+        }
+
+        /* Row dividers */
+        .profile-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 0;
+            border-bottom: 1px solid #f1f5f9;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .profile-row:last-child { border-bottom: none; }
+        .profile-row-label { font-weight: 600; color: #0b2f6a; font-size: 14px; }
+        .profile-row-sub { color: #94a3b8; font-size: 12px; margin-top: 2px; }
+        .profile-row-value { color: #94a3b8; font-size: 14px; }
+
+        /* Username input */
+        .username-input-wrap { position: relative; }
+        .username-input-wrap input {
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: 14px;
+            width: 260px;
+            max-width: 100%;
+            outline: none;
+            color: #0b2f6a;
+            font-weight: 500;
+        }
+        .username-input-wrap input:focus { border-color: #2563eb; }
+        .username-input-label {
+            position: absolute;
+            top: -8px; left: 10px;
+            background: #fff;
+            font-size: 11px;
+            color: #94a3b8;
+            padding: 0 4px;
+        }
+
+        /* Buttons */
+        .btn-save {
+            background: #2563eb;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 32px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background .2s;
+        }
+        .btn-save:hover { background: #1d4ed8; }
+        .btn-action {
+            background: #2563eb;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 20px;
+            font-weight: 500;
+            font-size: 13px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .btn-action:hover { background: #1d4ed8; }
+
+        /* Section headings */
+        .section-heading {
+            font-size: 13px;
+            color: #94a3b8;
+            font-weight: 500;
+            margin-bottom: 0;
+            margin-top: 24px;
+        }
+
+        /* Toggle switch */
+        .form-check-input:checked { background-color: #2563eb; border-color: #2563eb; }
+
+        /* Theme buttons */
+        .theme-btn {
+            width: 44px; height: 44px;
+            border-radius: 10px;
+            border: 2px solid #e2e8f0;
+            background: #f8fafc;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+            transition: border-color .2s;
+        }
+        .theme-btn.active {
+            border-color: #2563eb;
+            background: #eff6ff;
+        }
+        .theme-btn:hover { border-color: #2563eb; }
+
+        /* Security tab */
+        .security-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 0;
+            border-bottom: 1px solid #f1f5f9;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .security-row:last-child { border-bottom: none; }
+        .security-label { font-weight: 600; color: #0b2f6a; font-size: 14px; }
+        .security-sub { color: #94a3b8; font-size: 12px; margin-top: 2px; }
+
+        /* Content scroll area */
+        .content-scroll {
+            height: calc(100vh - 70px);
+            overflow-y: auto;
+        }
+        .content-scroll::-webkit-scrollbar { width: 4px; }
+        .content-scroll::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 4px; }
+    </style>
+</head>
+
+<body class="bg-light">
+
+    <div class="d-flex">
+
+        <!-- ===== SIDEBAR ===== -->
+        <aside class="sidebar bg-white border-end d-flex flex-column flex-shrink-0 offcanvas-lg offcanvas-start"
+            tabindex="-1" id="sidebarMenu" style="width: 250px;">
+            <div class="offcanvas-header d-lg-none border-bottom">
+                <img src="./Media/logo0.svg" alt="Cowrywise" height="30">
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu"
+                    aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body d-flex flex-column p-3 flex-grow-1">
+                <!-- Logo (Desktop only) -->
+                <a href="/" class="d-none d-lg-flex align-items-center mb-4 text-decoration-none px-3 pt-2">
+                    <img src="./Media/logo0.svg" alt="Cowrywise" height="30">
+                </a>
+
+                <!-- Greeting -->
+                <div class="px-3 mb-4 text-secondary fs-5">
+                    Howdy <span class="fw-bold text-dark" id="dashboardName"></span>
+                </div>
+
+                <!-- Navigation -->
+                <ul class="nav nav-pills flex-column mb-auto">
+                    <li class="nav-item">
+                        <a href="dashboard.html" class="nav-link d-flex align-items-center gap-3 text-secondary">
+                            <i class="fa-solid fa-house"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="save.html" class="nav-link d-flex align-items-center gap-3 text-secondary">
+                            <i class="fa-solid fa-piggy-bank"></i> Save
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="invest.html" class="nav-link d-flex align-items-center gap-3 text-secondary">
+                            <i class="fa-solid fa-chart-line"></i> Invest
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link d-flex align-items-center gap-3 text-secondary">
+                            <i class="fa-solid fa-egg"></i> Nest
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link d-flex align-items-center gap-3 text-secondary">
+                            <i class="fa-regular fa-credit-card"></i> Payment
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link d-flex align-items-center gap-3 text-secondary">
+                            <i class="fa-solid fa-wallet"></i> Stash
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link d-flex align-items-center gap-3 text-secondary">
+                            <i class="fa-solid fa-graduation-cap"></i> Learn
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link d-flex align-items-center gap-3 text-secondary">
+                            <i class="fa-solid fa-bullhorn"></i> Referral
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Bottom Section -->
+                <hr>
+                <div class="px-3 pb-3">
+                    <small class="text-muted fw-bold d-block mb-3" style="font-size: 10px; letter-spacing: 1px;">ALSO FROM COWRYWISE</small>
+                    <a href="#" class="text-decoration-none text-dark d-flex align-items-center gap-2 rounded p-2 hover-bg-light">
+                        <div class="bg-success bg-opacity-10 text-success rounded p-2">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                        <div class="lh-sm" style="font-size: 14px;">
+                            <span class="d-block fw-semibold">Sprout for</span>
+                            <span class="d-block fw-semibold">Business</span>
+                        </div>
+                        <i class="fa-solid fa-arrow-up-right-from-square ms-auto text-muted small"></i>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ===== MAIN CONTENT ===== -->
+        <main class="flex-grow-1 d-flex flex-column" style="min-width: 0;">
+
+            <!-- Top Navbar -->
+            <header class="bg-white border-bottom py-3 px-3 px-md-4 d-flex justify-content-between align-items-center sticky-top">
+                <div class="d-flex align-items-center gap-3">
+                    <!-- Hamburger -->
+                    <button class="btn btn-light d-lg-none border-0 px-2" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#sidebarMenu" aria-controls="sidebarMenu">
+                        <i class="fa-solid fa-bars fs-5"></i>
+                    </button>
+                    <div class="d-none d-sm-block fw-bold text-secondary" style="letter-spacing: 1px; font-size: 13px;">
+                        PROFILE SETTINGS
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-center gap-3 gap-md-4">
+                    <!-- Seed Badge -->
+                    <div class="badge rounded-pill bg-light text-dark border d-flex align-items-center gap-2 px-2 px-md-3 py-1 py-md-2">
+                        <img src="./Media/s-coin-2.webp" alt="Seed" width="16" height="16">
+                        <span class="fw-semibold d-none d-sm-inline">Seed</span>
+                    </div>
+                    <!-- Notifications -->
+                    <a href="#" class="text-secondary"><i class="fa-regular fa-bell fs-5"></i></a>
+                    <!-- Profile dropdown -->
+                    <div class="dropdown">
+                        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="./Media/girl-img.jpg" alt="profile" width="32" height="32"
+                                class="rounded-circle border border-2 border-primary">
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end text-small shadow" aria-labelledby="dropdownUser1">
+                            <li><a class="dropdown-item fw-semibold" href="profile.html"><i class="fa-regular fa-user me-2"></i>Profile</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-gear me-2"></i>Settings</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger" href="#" id="logoutBtn"><i class="fa-solid fa-right-from-bracket me-2"></i>Sign out</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page content -->
+            <div class="content-scroll bg-white">
+                <div class="px-3 px-md-5 py-4" style="max-width: 820px;">
+
+                    <!-- Tab switcher -->
+                    <div class="profile-tabs-wrap mb-5">
+                        <ul class="nav profile-tabs" id="profileTabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="personal-tab" data-bs-toggle="tab"
+                                    data-bs-target="#personal" type="button" role="tab">Personal</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="security-tab" data-bs-toggle="tab"
+                                    data-bs-target="#security" type="button" role="tab">Security</button>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- ===== TAB CONTENT ===== -->
+                    <div class="tab-content" id="profileTabsContent">
+
+                        <!-- PERSONAL TAB -->
+                        <div class="tab-pane fade show active" id="personal" role="tabpanel">
+
+                            <!-- Section: Personalize Details -->
+                            <p class="section-heading mt-0">Personalize Details</p>
+
+                            <!-- Avatar + Name -->
+                            <div class="d-flex align-items-center gap-3 mt-3 mb-4">
+                                <div class="avatar-wrap">
+                                    <img src="./Media/girl-img.jpg" alt="Avatar" id="profileAvatar">
+                                    <label for="avatarUpload" class="avatar-edit-btn" title="Change photo">
+                                        <i class="fa-solid fa-camera"></i>
+                                    </label>
+                                    <input type="file" id="avatarUpload" accept="image/*" class="d-none">
+                                </div>
+                                <div>
+                                    <div class="fw-bold fs-5" style="color: #0b2f6a;" id="profileFullName">Loading...</div>
+                                </div>
+                            </div>
+
+                            <!-- Profile completeness card -->
+                            <div class="progress-card mb-4">
+                                <div class="flex-grow-1">
+                                    <div style="font-size: 14px; color: #1e293b;">
+                                        Your profile is <strong>50% complete</strong>
+                                    </div>
+                                    <div style="font-size: 12px; color: #94a3b8; margin-top: 2px;">
+                                        Set up your account for the full experience
+                                    </div>
+                                    <div class="progress-bar-track">
+                                        <div class="progress-bar-fill"></div>
+                                    </div>
+                                </div>
+                                <i class="fa-solid fa-chevron-right text-primary"></i>
+                            </div>
+
+                            <!-- Email Address -->
+                            <div class="profile-row">
+                                <div>
+                                    <div class="profile-row-label">Email Address</div>
+                                    <div class="profile-row-sub">The email associated with your account</div>
+                                </div>
+                                <div class="profile-row-value" id="profileEmail">—</div>
+                            </div>
+
+                            <!-- Phone Number -->
+                            <div class="profile-row">
+                                <div>
+                                    <div class="profile-row-label">Phone Number</div>
+                                    <div class="profile-row-sub">Your registered phone number</div>
+                                </div>
+                                <div class="profile-row-value" id="profilePhone">—</div>
+                            </div>
+
+                            <!-- Username -->
+                            <div class="profile-row">
+                                <div>
+                                    <div class="profile-row-label">Username</div>
+                                    <div class="profile-row-sub">Receive money from friends using your username</div>
+                                </div>
+                                <div class="username-input-wrap mt-2 mt-md-0">
+                                    <span class="username-input-label">Username</span>
+                                    <input type="text" id="usernameInput" placeholder="@username">
+                                </div>
+                            </div>
+
+                            <!-- Gender -->
+                            <div class="profile-row">
+                                <div>
+                                    <div class="profile-row-label">Gender</div>
+                                    <div class="profile-row-sub" id="profileGender">Not provided</div>
+                                </div>
+                                <button class="btn-action" data-bs-toggle="modal" data-bs-target="#genderModal">Edit</button>
+                            </div>
+
+                            <!-- Date of Birth -->
+                            <div class="profile-row">
+                                <div>
+                                    <div class="profile-row-label">Date of Birth</div>
+                                    <div class="profile-row-sub" id="profileDOB">Not provided</div>
+                                </div>
+                                <button class="btn-action" data-bs-toggle="modal" data-bs-target="#dobModal">Add Date of Birth</button>
+                            </div>
+
+                            <!-- Next of Kin -->
+                            <p class="section-heading">Next of Kin</p>
+                            <div class="profile-row">
+                                <div>
+                                    <div class="profile-row-sub">No Next Of Kin</div>
+                                </div>
+                                <button class="btn-action">Add Next Of Kin</button>
+                            </div>
+
+                            <!-- Visibility -->
+                            <p class="section-heading">Visibility</p>
+                            <div class="profile-row">
+                                <div>
+                                    <div class="profile-row-label">Account Visibility</div>
+                                    <div class="profile-row-sub">Disable my account from being discovered by friends.</div>
+                                </div>
+                                <div class="form-check form-switch mb-0">
+                                    <input class="form-check-input" type="checkbox" role="switch"
+                                        id="visibilityToggle" checked style="width: 48px; height: 24px; cursor: pointer;">
+                                </div>
+                            </div>
+
+                            <!-- Appearance -->
+                            <p class="section-heading">Appearance</p>
+                            <div class="profile-row align-items-center">
+                                <div class="profile-row-label">Theme</div>
+                                <div class="d-flex gap-2">
+                                    <button class="theme-btn active" id="themeLight" title="Light" onclick="setTheme('light')">
+                                        <i class="fa-regular fa-sun" style="color: #2563eb;"></i>
+                                    </button>
+                                    <button class="theme-btn" id="themeAuto" title="System" onclick="setTheme('auto')">
+                                        <i class="fa-solid fa-gear" style="color: #64748b;"></i>
+                                    </button>
+                                    <button class="theme-btn" id="themeDark" title="Dark" onclick="setTheme('dark')">
+                                        <i class="fa-solid fa-moon" style="color: #64748b;"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Save Changes -->
+                            <div class="d-flex justify-content-center mt-5 mb-5">
+                                <button class="btn-save" onclick="saveProfileChanges()">Save Changes</button>
+                            </div>
+
+                        </div>
+                        <!-- /PERSONAL TAB -->
+
+                        <!-- SECURITY TAB -->
+                        <div class="tab-pane fade" id="security" role="tabpanel">
+
+                            <p class="section-heading mt-0">Account Security</p>
+
+                            <!-- Change Password -->
+                            <div class="security-row">
+                                <div>
+                                    <div class="security-label">Password</div>
+                                    <div class="security-sub">Change your login password</div>
+                                </div>
+                                <button class="btn-action" data-bs-toggle="modal" data-bs-target="#changePasswordModal">Change Password</button>
+                            </div>
+
+                            <!-- Transaction PIN -->
+                            <div class="security-row">
+                                <div>
+                                    <div class="security-label">Transaction PIN</div>
+                                    <div class="security-sub">Change your 4-digit transaction PIN</div>
+                                </div>
+                                <button class="btn-action">Change PIN</button>
+                            </div>
+
+                            <!-- Two-Factor Auth -->
+                            <div class="security-row">
+                                <div>
+                                    <div class="security-label">Two-Factor Authentication</div>
+                                    <div class="security-sub">Add an extra layer of security to your account</div>
+                                </div>
+                                <div class="form-check form-switch mb-0">
+                                    <input class="form-check-input" type="checkbox" role="switch"
+                                        id="twoFactorToggle" style="width: 48px; height: 24px; cursor: pointer;">
+                                </div>
+                            </div>
+
+                            <!-- Biometrics -->
+                            <div class="security-row">
+                                <div>
+                                    <div class="security-label">Biometric Login</div>
+                                    <div class="security-sub">Use fingerprint or face ID to log in</div>
+                                </div>
+                                <div class="form-check form-switch mb-0">
+                                    <input class="form-check-input" type="checkbox" role="switch"
+                                        id="biometricToggle" style="width: 48px; height: 24px; cursor: pointer;">
+                                </div>
+                            </div>
+
+                            <!-- Login Activity -->
+                            <div class="security-row">
+                                <div>
+                                    <div class="security-label">Login Activity</div>
+                                    <div class="security-sub">View recent sign-in activity on your account</div>
+                                </div>
+                                <button class="btn-action">View Activity</button>
+                            </div>
+
+                            <!-- Deactivate Account -->
+                            <p class="section-heading">Danger Zone</p>
+                            <div class="security-row">
+                                <div>
+                                    <div class="security-label text-danger">Deactivate Account</div>
+                                    <div class="security-sub">Temporarily disable your Cowrywise account</div>
+                                </div>
+                                <button class="btn btn-outline-danger btn-sm px-3 py-2 fw-semibold">Deactivate</button>
+                            </div>
+
+                            <!-- Sign Out -->
+                            <div class="security-row">
+                                <div>
+                                    <div class="security-label">Sign Out</div>
+                                    <div class="security-sub">Sign out of your Cowrywise account</div>
+                                </div>
+                                <button class="btn-action" id="logoutBtn2" onclick="signOutUser()">Sign Out</button>
+                            </div>
+
+                        </div>
+                        <!-- /SECURITY TAB -->
+
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Floating Action Button -->
+    <button class="fab shadow-lg">
+        <img src="./Media/logo0.svg" alt="logo" style="width: 25px; filter: brightness(0) invert(1);">
+    </button>
+
+    <!-- ===== MODALS ===== -->
+
+    <!-- Gender Modal -->
+    <div class="modal fade" id="genderModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold" style="color:#0b2f6a">Select Gender</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body pt-2">
+                    <div class="d-flex flex-column gap-3">
+                        <label class="d-flex align-items-center gap-3 border rounded-3 p-3" style="cursor:pointer;">
+                            <input type="radio" name="gender" value="Male" class="form-check-input mt-0"> Male
+                        </label>
+                        <label class="d-flex align-items-center gap-3 border rounded-3 p-3" style="cursor:pointer;">
+                            <input type="radio" name="gender" value="Female" class="form-check-input mt-0"> Female
+                        </label>
+                        <label class="d-flex align-items-center gap-3 border rounded-3 p-3" style="cursor:pointer;">
+                            <input type="radio" name="gender" value="Prefer not to say" class="form-check-input mt-0"> Prefer not to say
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button class="btn-save w-100" onclick="saveGender()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Date of Birth Modal -->
+    <div class="modal fade" id="dobModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold" style="color:#0b2f6a">Date of Birth</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body pt-2">
+                    <label class="form-label text-secondary small">Select your date of birth</label>
+                    <input type="date" id="dobInput" class="form-control">
+                </div>
+                <div class="modal-footer border-0">
+                    <button class="btn-save w-100" onclick="saveDOB()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Change Password Modal -->
+    <div class="modal fade" id="changePasswordModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold" style="color:#0b2f6a">Change Password</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body pt-2 d-flex flex-column gap-3">
+                    <div>
+                        <label class="form-label text-secondary small">Current Password</label>
+                        <input type="password" id="currentPassword" class="form-control" placeholder="Enter current password">
+                    </div>
+                    <div>
+                        <label class="form-label text-secondary small">New Password</label>
+                        <input type="password" id="newPassword" class="form-control" placeholder="Enter new password">
+                    </div>
+                    <div>
+                        <label class="form-label text-secondary small">Confirm New Password</label>
+                        <input type="password" id="confirmNewPassword" class="form-control" placeholder="Confirm new password">
+                    </div>
+                    <div id="passwordError" class="text-danger small" style="display:none;"></div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button class="btn-save w-100" onclick="changePassword()">Update Password</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Profile Firebase Module Script -->
+    <script type="module">
+        import { auth, database } from './firebase.js';
+        import {
+            onAuthStateChanged,
+            signOut,
+            updatePassword,
+            reauthenticateWithCredential,
+            EmailAuthProvider
+        } from 'https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js';
+        import {
+            ref,
+            get,
+            update
+        } from 'https://www.gstatic.com/firebasejs/12.15.0/firebase-database.js';
+
+        let currentUser = null;
+        let currentUID = null;
+
+        // =============================================
+        // LOAD USER DATA FROM FIREBASE ON PAGE LOAD
+        // =============================================
+        onAuthStateChanged(auth, async (user) => {
+            if (!user) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            currentUID = user.uid;
+            const snapshot = await get(ref(database, 'users/' + user.uid));
+
+            if (snapshot.exists()) {
+                currentUser = snapshot.val();
+                populateProfile(currentUser);
+            }
+        });
+
+        function populateProfile(data) {
+            // Name
+            const nameEl = document.getElementById('profileFullName');
+            if (nameEl) nameEl.textContent = (data.firstName || '') + ' ' + (data.lastName || '');
+
+            // Sidebar greeting
+            const greetEl = document.getElementById('dashboardName');
+            if (greetEl) greetEl.textContent = data.firstName || '';
+
+            // Email (read-only)
+            const emailEl = document.getElementById('profileEmail');
+            if (emailEl) emailEl.textContent = data.email || '—';
+
+            // Phone (read-only)
+            const phoneEl = document.getElementById('profilePhone');
+            if (phoneEl) phoneEl.textContent = data.phone || '—';
+
+            // Username
+            const usernameEl = document.getElementById('usernameInput');
+            if (usernameEl) usernameEl.value = data.username ? '@' + data.username : '';
+
+            // Gender
+            const genderEl = document.getElementById('profileGender');
+            if (genderEl && data.gender) genderEl.textContent = data.gender;
+
+            // DOB
+            const dobEl = document.getElementById('profileDOB');
+            if (dobEl && data.dob) {
+                const d = new Date(data.dob);
+                dobEl.textContent = d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+            }
+
+            // Pre-select gender radio if saved
+            if (data.gender) {
+                const radios = document.querySelectorAll('input[name="gender"]');
+                radios.forEach(r => { if (r.value === data.gender) r.checked = true; });
+            }
+
+            // DOB input pre-fill
+            if (data.dob) {
+                const dobInput = document.getElementById('dobInput');
+                if (dobInput) dobInput.value = data.dob;
+            }
+
+            // Visibility toggle
+            const visToggle = document.getElementById('visibilityToggle');
+            if (visToggle && data.accountVisibility !== undefined) {
+                visToggle.checked = data.accountVisibility;
+            }
+
+            // Theme
+            if (data.theme) {
+                applyTheme(data.theme);
+            }
+        }
+
+        // =============================================
+        // SAVE CHANGES TO FIREBASE
+        // =============================================
+        window.saveProfileChanges = async function () {
+            if (!currentUID) { alert('Not logged in'); return; }
+
+            const usernameRaw = document.getElementById('usernameInput').value.trim();
+            const username = usernameRaw.startsWith('@') ? usernameRaw.slice(1) : usernameRaw;
+
+            if (!username) {
+                alert('Please enter a username');
+                return;
+            }
+
+            const gender = document.getElementById('profileGender').textContent.trim();
+            const dobDisplay = document.getElementById('profileDOB').textContent.trim();
+            const dobInput = document.getElementById('dobInput').value;
+            const visibility = document.getElementById('visibilityToggle').checked;
+            const activeThemeBtn = document.querySelector('.theme-btn.active');
+            const theme = activeThemeBtn ? activeThemeBtn.id.replace('theme', '').toLowerCase() : 'light';
+
+            const updates = {
+                username,
+                gender: gender === 'Not provided' ? (currentUser.gender || '') : gender,
+                dob: dobInput || (currentUser.dob || ''),
+                accountVisibility: visibility,
+                theme
+            };
+
+            try {
+                await update(ref(database, 'users/' + currentUID), updates);
+                // Keep local copy in sync
+                currentUser = { ...currentUser, ...updates };
+                showToast('Profile saved successfully!');
+            } catch (err) {
+                console.error(err);
+                alert('Failed to save. Please try again.');
+            }
+        };
+
+        // =============================================
+        // SAVE GENDER FROM MODAL
+        // =============================================
+        window.saveGender = function () {
+            const selected = document.querySelector('input[name="gender"]:checked');
+            if (selected) {
+                document.getElementById('profileGender').textContent = selected.value;
+                bootstrap.Modal.getInstance(document.getElementById('genderModal')).hide();
+            }
+        };
+
+        // =============================================
+        // SAVE DOB FROM MODAL
+        // =============================================
+        window.saveDOB = function () {
+            const val = document.getElementById('dobInput').value;
+            if (val) {
+                const d = new Date(val);
+                document.getElementById('profileDOB').textContent =
+                    d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+                bootstrap.Modal.getInstance(document.getElementById('dobModal')).hide();
+            }
+        };
+
+        // =============================================
+        // SIGN OUT
+        // =============================================
+        window.signOutUser = function () {
+            if (confirm('Are you sure you want to sign out?')) {
+                signOut(auth).then(() => {
+                    window.location.href = 'login.html';
+                }).catch(err => {
+                    console.error(err);
+                    alert('Logout failed');
+                });
+            }
+        };
+
+        // Logout button in dropdown
+        const logoutBtn = document.getElementById('logoutBtn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.signOutUser();
+            });
+        }
+
+        // =============================================
+        // CHANGE PASSWORD (Firebase)
+        // =============================================
+        window.changePassword = async function () {
+            const currentPwd = document.getElementById('currentPassword').value;
+            const newPwd = document.getElementById('newPassword').value;
+            const confirmPwd = document.getElementById('confirmNewPassword').value;
+            const err = document.getElementById('passwordError');
+
+            if (!currentPwd || !newPwd || !confirmPwd) {
+                err.textContent = 'Please fill in all fields'; err.style.display = 'block'; return;
+            }
+            if (newPwd.length < 8) {
+                err.textContent = 'Password must be at least 8 characters'; err.style.display = 'block'; return;
+            }
+            if (newPwd !== confirmPwd) {
+                err.textContent = 'Passwords do not match'; err.style.display = 'block'; return;
+            }
+
+            err.style.display = 'none';
+
+            try {
+                const user = auth.currentUser;
+                const credential = EmailAuthProvider.credential(user.email, currentPwd);
+                await reauthenticateWithCredential(user, credential);
+                await updatePassword(user, newPwd);
+                showToast('Password updated successfully!');
+                bootstrap.Modal.getInstance(document.getElementById('changePasswordModal')).hide();
+                document.getElementById('currentPassword').value = '';
+                document.getElementById('newPassword').value = '';
+                document.getElementById('confirmNewPassword').value = '';
+            } catch (e) {
+                if (e.code === 'auth/wrong-password' || e.code === 'auth/invalid-credential') {
+                    err.textContent = 'Current password is incorrect';
+                } else {
+                    err.textContent = 'Failed to update password. Try again.';
+                }
+                err.style.display = 'block';
+            }
+        };
+
+        // =============================================
+        // THEME SWITCHER (persists to Firebase on Save)
+        // =============================================
+        window.setTheme = function (theme) {
+            applyTheme(theme);
+        };
+
+        function applyTheme(theme) {
+            document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
+            const btn = document.getElementById('theme' + theme.charAt(0).toUpperCase() + theme.slice(1));
+            if (btn) btn.classList.add('active');
+        }
+
+        // =============================================
+        // AVATAR PREVIEW (local only)
+        // =============================================
+        const avatarUpload = document.getElementById('avatarUpload');
+        if (avatarUpload) {
+            avatarUpload.addEventListener('change', function () {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = e => {
+                        document.getElementById('profileAvatar').src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+
+        // =============================================
+        // TOAST NOTIFICATION
+        // =============================================
+        function showToast(message) {
+            // Create toast container if not present
+            let container = document.getElementById('toastContainer');
+            if (!container) {
+                container = document.createElement('div');
+                container.id = 'toastContainer';
+                container.style.cssText = 'position:fixed;bottom:24px;right:24px;z-index:9999;';
+                document.body.appendChild(container);
+            }
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                background:#0b2f6a; color:#fff; padding:14px 22px;
+                border-radius:10px; font-size:14px; font-weight:500;
+                box-shadow:0 4px 16px rgba(0,0,0,0.15);
+                margin-top:8px; display:flex; align-items:center; gap:10px;
+                animation: slideIn 0.3s ease;
+            `;
+            toast.innerHTML = '<i class="fa-solid fa-circle-check" style="color:#4ade80"></i>' + message;
+            container.appendChild(toast);
+            setTimeout(() => { toast.remove(); }, 3000);
+        }
+    </script>
+
+    <style>
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to   { transform: translateY(0);   opacity: 1; }
+        }
+    </style>
+
+</body>
+</html>
